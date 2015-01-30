@@ -16,10 +16,12 @@ real dependencies from ones you only need for local development.
 }
 ```
 
-Add this line into your `public/index.php` in Laravel, right **before** `$app->run();`.
+Add this line into your `app/start.php` in Laravel, right **before** `return $app;`.
 
 ```php
-SassCompiler::run("scss/", "css/");
+if( $env == 'local' ) {
+  SassCompiler::run("scss/", "css/");
+}
 ```
 
 The first parameter is the relative path to your scss folder (create one) and the second parameter is the relative
@@ -68,7 +70,7 @@ tool will have a development/production switch/recognizer.
 
 ## To use the very latest features of Sass:
 
-Currently php-sass fetches v0.0.14 (August 2014) of *leafo/scssphp* as a compiler. For latest features you might want a 
+Currently php-sass fetches v0.0.14 (August 2014) of *leafo/scssphp* as a compiler. For latest features you might want a
 newer version, so have a look here https://github.com/leafo/scssphp/releases and edit the composer.json accordingly.
 
 ## Used scripts
